@@ -9,4 +9,4 @@ $ npm run dev && npm start
 # run test
 $ npm run test
 
-[![CircleCI](https://circleci.com/gh/LydiaWA/react-vstda.svg?style=svg)](https://circleci.com/gh/LydiaWA/react-vstda)
+[![CircleCI](https://circleci.com/gh/LydiaWA/react-vstda.svg?style=shield)](https://circleci.com/gh/LydiaWA/react-vstda)
