@@ -3,18 +3,15 @@ import React, { Component } from 'react';
 class CreateTodo extends Component {
     constructor (props) {
         super(props);
-        
         this.state = {
             text:'',
             priority: ''
         }
-        
         this.handleChange = this.handleChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this)
         }
 
     handleChange(e) {
-        
         this.setState({
             [e.target.name]:e.target.value
         })
@@ -22,22 +19,18 @@ class CreateTodo extends Component {
     
     handleAdd(e) {
         e.preventDefault();
-        
-        {if(this.state.text.length && this.state.priority.length) {
-            
+        if(this.state.text.length && this.state.priority.length) {
             const newItem = {
                 text: this.state.text,
                 priority: this.state.priority
             }
             this.props.handleAdd(newItem);
-            console.log('newItem::', newItem)
-            
             this.setState({
                 text:'',
                 priority:''
             })
-        }}
         }
+    }
 
     render() {
         return(
@@ -65,9 +58,6 @@ class CreateTodo extends Component {
                         </div>
                     </form>
                 </div>
-                
-                
-
             </div>
         )
     }

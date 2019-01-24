@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
-
 class Itemlist extends Component {
     constructor (props) {
         super(props);
-        
         this.handleDelete = this.handleDelete.bind(this);
         this.handleComplete = this.handleComplete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
@@ -20,71 +18,60 @@ class Itemlist extends Component {
     handleComplete(e) {
         const completeId = e.target.name
         this.props.itemComplete(completeId)
-        
     }
 
     changeColor(item){
-
         if (item.isCompleted == true)
-        {return "list-group-item list-group-item-light"};
-        
+            {return "list-group-item list-group-item-light"};
         if (item.isCompleted == false) {
-        
             if(item.priority == "1")
                 {return "list-group-item list-group-item-success"}
-
             if(item.priority == "2")
                 {return "list-group-item list-group-item-primary"}
-
             if(item.priority == "3")
                 {return "list-group-item list-group-item-danger"}
-    
         }
     }
     
-   handleEdit(e) {
+    handleEdit(e) {
         this.props.editForm(e.target.name);
-        }
+    }
 
     handleSaveEdit(item){
         this.props.handleUpdate(item)
-        }
+    }
 
-    render () {
-    
-    return (
-       
-        <div className = "card">
-            <div className = "card-header">
-                <h5>View Todos</h5>
-            </div>
-        <div className = "card-body">
-            
-            <div>
-                <ul className = "list-group"> 
-                    { this.props.todos.map((item) => {
-                        if(item.editing){
+    render(){
+        return (
+            <div className = "card">
+                <div className = "card-header">
+                    <h5>View Todos</h5>
+                </div>
+            <div className = "card-body">
+                <div>
+                    <ul className = "list-group"> 
+                        {this.props.todos.map((item) => {
+                            if(item.editing){
+                                return (
+                                    <EditTodo key = {item.id} item = {item} handleSaveEdit = {this.handleSaveEdit}/>
+                                )
+                            } else {
                             return (
-                                     <EditTodo key = {item.id} item = {item} handleSaveEdit = {this.handleSaveEdit}/>
-                                    )
-                        } else {
-                        return (
-                            <li key = {item.id} className = {this.changeColor(item)} >
-                                <input name = {item.id} type = "checkbox" onClick = {this.handleComplete}/>
-                                <span>{item.text}</span>
-                                <div className = "d-flex flex-sm-row justify-content-sm-end">
-                                    <a name = {item.id} href = "#" className = "edit-todo fas fa-edit" onClick = {this.handleEdit}></a>
-                                    <a name = {item.id} href = "#" className = "delete-todo fas fa-trash-alt" onClick = {this.handleDelete}></a>
-                                </div>
-                            </li>
-                            )};
-                        })
-                    }
-                </ul>
+                                <li key = {item.id} className = {this.changeColor(item)} >
+                                    <input name = {item.id} type = "checkbox" onClick = {this.handleComplete}/>
+                                    <span>{item.text}</span>
+                                    <div className = "d-flex flex-sm-row justify-content-sm-end">
+                                        <a name = {item.id} href = "#" className = "edit-todo fas fa-edit" onClick = {this.handleEdit}></a>
+                                        <a name = {item.id} href = "#" className = "delete-todo fas fa-trash-alt" onClick = {this.handleDelete}></a>
+                                    </div>
+                                </li>
+                                )};
+                            })
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
-        </div>
-
     )}
 }
 
@@ -143,6 +130,5 @@ class EditTodo extends Component{
 
         )
     }
-    
 }
 export default Itemlist;
